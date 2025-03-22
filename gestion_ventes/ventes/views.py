@@ -33,10 +33,10 @@ you can use ModelViewSet instead of ReadOnlyViewSet """
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsOwner]  # only the admin(owner) can manage the users
+    permission_classes = [permissions.IsAuthenticated]  # only the admin(owner) can manage the users
 
 # manage the products
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductViewSet(viewsets.ModelViewSet):
     """
     - employee : can only see their products who available in
     - Admin : can see all things and modify if possible
@@ -53,7 +53,7 @@ class SaleViewSet(viewsets.ModelViewSet):
         """only the admin can see all things(sales saved and others things)
         but the employee could see this sales saved"""
         user = self.request.user
-        if user.role == 'owner':
+        if user.role_choices == 'owner':
             return Sale.objects.all()
         return Sale.objects.filter(employee=user)
 
@@ -100,3 +100,7 @@ class SaleViewSet(viewsets.ModelViewSet):
 class ReturnViewSet(viewsets.ModelViewSet):
     serializer_class = ReturnSerializer
     queryset = Return.objects.all()
+    
+    
+"""Documentation officielle de l'api"""
+

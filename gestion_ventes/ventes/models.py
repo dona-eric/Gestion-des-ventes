@@ -14,13 +14,13 @@ class User(AbstractUser):
     user_permissions = models.ManyToManyField(Permission, related_name="custom_user_permissions", blank=True)
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, verbose_name="name of product")
-    description = models.TextField(verbose_name="describe of product", null=True)
+    name = models.CharField(max_length=200, verbose_name="name of product", help_text="nom du produit")
+    description = models.TextField(verbose_name="describe of product", help_text="decrire le produit",null=True)
     price_unit = models.DecimalField(max_digits=10, decimal_places=2, help_text="price of articles")
-    total_stocks = models.PositiveIntegerField() # total de stocks available
-    min_stocks_alert = models.IntegerField(default=5)
+    total_stocks = models.PositiveIntegerField(help_text="Total de stocks disponibles pour ce produit")
+    min_stocks_alert = models.IntegerField(default=5, help_text="stocks pour la zone d'alerte")
     updated_at = models.DateTimeField(auto_now_add=True, help_text='Date de mis à jour')
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True, help_text="Date d'aout du produit")
 
 # class of sellers
 class Sale(models.Model):
@@ -37,9 +37,9 @@ class Sale(models.Model):
     method_payment = models.CharField(max_length=20, choices=METHOD_PAYMENT, default="Cash")
     status_payment = models.CharField(max_length=10, choices=STATUS_PAYMENT, default='PAID')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    employee= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    quantity_sales = models.IntegerField() #quantitté sales
-    total_sales = models.DecimalField(max_digits=10, decimal_places=2, blank=True) # total de sales saved
+    employee= models.ForeignKey(User, on_delete=models.SET_NULL, null=True, help_text="Celui/celle ui a vendu le produit")
+    quantity_sales = models.IntegerField(help_text='quantité vendue') #quantitté vendues
+    total_sales = models.DecimalField(max_digits=10, decimal_places=2, blank=True, help_text="total rpice des articles vendues") # total de sales saved
     date_sales = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
