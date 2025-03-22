@@ -76,11 +76,18 @@ class SaleViewSet(viewsets.ModelViewSet):
     def update_payment(self, request, pk):
         try:
             sale = Sale.objects.get(pk=pk)
-            new_status = request.data.get('status_payment')
-            if new_status in ['pending', 'paid']:
-                sale.STATUS_PAYMENT = new_status
-                sale.save()
-            return Response({'message': 'Successful payment'})
+            serializer = SaleSerializer(sale, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                
+                # si la staatus de paiement passe (pending---->paid)
+                if serializer.validated_data.get('status_payment')=='paid':
+                    ticket = generate_facture(sale)
+                    return Response({"Message": "payment saved with success", "ticket": ticket})
+                else:
+                    return Response({"Message": "Error of payment structure"})
+            return Response(serializer.data)
+                    
         except ValueError as e:
             return Response({"Error": "status invalid"}, status={e})
 
