@@ -1,4 +1,8 @@
-# Application de Gestion des Ventes  
+# Application de Gestion des Ventes 
+
+---
+[Documentation DRF API web](https://pypi.python.org/pypi/drfdocs/)
+---
 **Projet :** Système de gestion des stocks et ventes pour une boutique de ventes des accessoires téléphoniques et de divers produits.   
 **Développeur :** Eric KOULODJI
 
