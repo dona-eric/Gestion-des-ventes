@@ -1,9 +1,19 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
-
+from .utils import generate_facture 
+from rest_framework.decorators import api_view
 from .models import Sale, Product, User, Return
 from .serializers import SaleSerializer, UserSerializer, ProductSerializer, ReturnSerializer
+
+
+# pour generer la acture d'achat
+@api_view(['GET'])
+def get_facture(request, sale_id):
+    sale =get_object_or_404(Sale,id=sale_id)
+    return generate_facture(sale.id)
+
+
 
 ## we wanted combine the  des users, sales and products
 # Permission to restrict

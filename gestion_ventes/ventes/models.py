@@ -16,7 +16,7 @@ class User(AbstractUser):
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="name of product")
     description = models.TextField(verbose_name="describe of product", null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, help_text="price of articles")
+    price_unit = models.DecimalField(max_digits=10, decimal_places=2, help_text="price of articles")
     total_stocks = models.PositiveIntegerField() # total de stocks available
     min_stocks_alert = models.IntegerField(default=5)
     updated_at = models.DateTimeField(auto_now_add=True, help_text='Date de mis à jour')
@@ -44,7 +44,7 @@ class Sale(models.Model):
 
     def save(self, *args, **kwargs):
         ## calcul du mont total sales
-        self.total_sales = self.product.price * self.quantity_sales
+        self.total_sales = self.product.price_unit * self.quantity_sales
         self.product.total_stocks -= self.quantity_sales
         self.product.save()
         super().save(*args, **kwargs)

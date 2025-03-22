@@ -1,11 +1,12 @@
 # Application de Gestion des Ventes 
 
 ---
-[Documentation DRF API web](https://pypi.python.org/pypi/drfdocs/)
+![SALES MANAGE DASBOARD](https://www.toucantoco.com/hubfs/Mobile%20analytics%20tablet.png)
 ---
 **Projet :** Système de gestion des stocks et ventes pour une boutique de ventes des accessoires téléphoniques et de divers produits.   
 **Développeur :** Eric KOULODJI
-
+---
+[Documentation DRF API web](https://pypi.python.org/pypi/drfdocs/)
 ---
 
 ## Table des matières  
@@ -26,6 +27,7 @@
 L'application de gestion des ventes vise à combler le besoin critique des propriétaires de boutiques de maintenir un contrôle précis sur leurs activités commerciales, particulièrement lorsqu'ils ne sont pas physiquement présents. Le système permettra une supervision à distance des opérations quotidiennes, incluant les entrées et sorties de marchandises, les performances de vente, et la gestion des stocks.
 
 Dans un contexte commercial de plus en plus compétitif, disposer d'informations en temps réel sur ses activités devient un avantage concurrentiel majeur. Cette solution s'adresse donc aux propriétaires soucieux d'optimiser leur gestion et de prendre des décisions commerciales basées sur des données fiables et actualisées.
+
 **Objectif principal :** Permettre aux administrateurs de contrôler ses activités à distance via un tableau de bord analytique.  
 
 ---
@@ -59,7 +61,8 @@ Dans un contexte commercial de plus en plus compétitif, disposer d'informations
 ### **Gestion des ventes**  
 - Interface type "caisse enregistreuse"  
 - Gestion des remises et modes de paiement  
-- Historique des transactions  
+- Historique des transactions 
+- Mise en place d'un reçu(ou tickets) pdf après paiement par le client. 
 
 ### **Suivi en temps réel**  
 - Synchronisation via WebSockets  
@@ -74,7 +77,7 @@ Dans un contexte commercial de plus en plus compétitif, disposer d'informations
 ## 4. Technologies  
 | Composant       | Technologie               |  
 |-----------------|---------------------------|  
-| **Backend**     | Django REST Framework     |  
+| **Backend**     | Django REST Framework + Django (Python)    |  
 | **Base de données** | PostgreSQL + Supabase |  
 | **Frontend**    | React.js (web) / Flutter (mobile) |  
 | **Notifications** | Firebase Cloud Messaging |  
