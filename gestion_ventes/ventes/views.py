@@ -20,12 +20,12 @@ def get_facture(request, sale_id):
 class IsOwner(permissions.BasePermission):
     """aux admins de modifier les stocks"""
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == 'owner'
+        return request.user.is_authenticated and request.user.role_choices == 'owner'
 
 class IsEmployee(permissions.BasePermission):
     """aux employées de voir les products et register des sales"""
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == 'employee'
+        return request.user.is_authenticated and request.user.role_choices == 'employee'
 
 """The views to manage the users , products and sales model's
 this method cover all possible actions(create, read, update, delete)CRUD.

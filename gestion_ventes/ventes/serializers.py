@@ -5,7 +5,7 @@ from .models import  Sale, Product, Permission, Group, User, Return
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields=['id', "username", 'role', "email"]
+        fields=['id', "username", 'role_choices', "email"]
 
 class ProductSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
