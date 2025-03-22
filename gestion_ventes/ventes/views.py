@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
-from .models import Sale, Product, User
-from .serializers import SaleSerializer, UserSerializer, ProductSerializer
+
+from .models import Sale, Product, User, Return
+from .serializers import SaleSerializer, UserSerializer, ProductSerializer, ReturnSerializer
 
 ## we wanted combine the  des users, sales and products
 # Permission to restrict
@@ -50,8 +51,35 @@ class SaleViewSet(viewsets.ModelViewSet):
         """ the non owner register the sales saved in his/her names"""
         serializer.save(employee=self.request.user)
 
+    def make_payment(self, request, pk):
+        try:
+            sale = Sale.objects.get(pk=pk)
+            amount = float(request.data.get('amount paid', 0))
+            if amount <=0:
+                return Response({"Message": "payment invalid"}, status=400)
+            else:
+                sale.save()
+                return Response({"Message": "payment saved with success"})
+        except ValueError as e:
+            raise Response({"Error": "status invalid"}, status={e})
+
+    def update_payment(self, request, pk):
+        try:
+            sale = Sale.objects.get(pk=pk)
+            new_status = request.data.get('status_payment')
+            if new_status in ['pending', 'paid']:
+                sale.STATUS_PAYMENT = new_status
+                sale.save()
+            return Response({'message': 'Successful payment'})
+        except ValueError as e:
+            return Response({"Error": "status invalid"}, status={e})
+
     def destroy(self, request, *args, **kwargs):
         """only owner can delete a sales"""
         if request.user.role != 'owner':
             return Response({"error": "Only the owner(admin) has the all permissions to delete the sales"}, status=403)
         return super().destroy(request, *args, **kwargs)
+
+class ReturnViewSet(viewsets.ModelViewSet):
+    serializer_class = ReturnSerializer
+    queryset = Return.objects.all()

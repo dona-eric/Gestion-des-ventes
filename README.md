@@ -22,13 +22,13 @@
 L'application de gestion des ventes vise à combler le besoin critique des propriétaires de boutiques de maintenir un contrôle précis sur leurs activités commerciales, particulièrement lorsqu'ils ne sont pas physiquement présents. Le système permettra une supervision à distance des opérations quotidiennes, incluant les entrées et sorties de marchandises, les performances de vente, et la gestion des stocks.
 
 Dans un contexte commercial de plus en plus compétitif, disposer d'informations en temps réel sur ses activités devient un avantage concurrentiel majeur. Cette solution s'adresse donc aux propriétaires soucieux d'optimiser leur gestion et de prendre des décisions commerciales basées sur des données fiables et actualisées.
-**Objectif principal :** Permettre au propriétaire de contrôler ses activités à distance via un tableau de bord analytique.  
+**Objectif principal :** Permettre aux administrateurs de contrôler ses activités à distance via un tableau de bord analytique.  
 
 ---
 
 ## 2. Objectifs  
-✅ **Pour le propriétaire** :  
--Fournir au propriétaire une visibilité complète sur les activités de sa boutique
+✅ **Pour l'administrateur** :  
+-Fournir à l'administrateur une visibilité complète sur les activités de sa boutique
 
 -Automatiser la mise à jour des stocks après chaque transaction
 
@@ -40,7 +40,7 @@ Dans un contexte commercial de plus en plus compétitif, disposer d'informations
 
 -Améliorer la traçabilité des transactions commerciales
 
-✅ **Pour le boutiquier** :  
+✅ **Pour les employés** :  
 - Interface simple pour enregistrer les ventes  
 - Mise à jour automatique des stocks  
 
